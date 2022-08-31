@@ -1,9 +1,10 @@
 #include <iostream>
-#include "Logic.h"
+#include "Board.h"
+using namespace std;
 
 int main() {
 	//Halper halper;
-	Logic logic;
+	Board logic;
 	//ConstructPieceList a;
 	//a.output();
 	bool color = true;
@@ -21,57 +22,31 @@ int main() {
 		for (int i = 0; i < 8; i++) {
 			for (int j = 0; j < 8; j++) {
 				cout << board[i][j];
-				for (auto a = White.begin(); a != White.end(); a++) {
-					if ((*a).coordinates.x == i && (*a).coordinates.y == j) {
-						switch ((*a).piece.name)
-						{
-						case Pawn:
-							cout << "p";
-							break;
-						case Knight:
-							cout << "k";
-							break;
-						case Bishop:
-							cout << "b";
-							break;
-						case Rook:
-							cout << "r";
-							break;
-						case Queen:
-							cout << "Q";
-							break;
-						case King:
-							cout << "K";
-							break;
-						}
-					}
+				// a = figur[i].begin();
+				switch (figur[i][j].name)
+				{
+				case Pawn:
+					cout << "p";
+					break;
+				case Knight:
+					cout << "k";
+					break;
+				case Bishop:
+					cout << "b";
+					break;
+				case Rook:
+					cout << "r";
+					break;
+				case Queen:
+					cout << "Q";
+					break;
+				case King:
+					cout << "K";
+					break;
 				}
-				for (auto a = Black.begin(); a != Black.end(); a++) {
-					if ((*a).coordinates.x == i && (*a).coordinates.y == j) {
-						switch ((*a).piece.name)
-						{
-						case Pawn:
-							cout << "p";
-							break;
-						case Knight:
-							cout << "k";
-							break;
-						case Bishop:
-							cout << "b";
-							break;
-						case Rook:
-							cout << "r";
-							break;
-						case Queen:
-							cout << "Q";
-							break;
-						case King:
-							cout << "K";
-							break;
-						}
-					}
-				}
+				//a++;
 				cout << "  ";
+
 			}
 			cout << endl;
 		}
