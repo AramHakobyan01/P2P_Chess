@@ -1,6 +1,6 @@
 #pragma once
 #include <string>
-enum PieceName
+enum class PieceName
 {
 	None = 0,
 	Pawn = 1,
@@ -10,9 +10,15 @@ enum PieceName
 	Queen = 5,
 	King = 6
 };
+enum class Color
+{
+	None = 1,
+	White = 2,
+	Black = 3
+};
 class Piece
 {
 public:
-	bool color;
+	Color color;
 	PieceName name;
 };
