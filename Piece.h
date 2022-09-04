@@ -1,24 +1,26 @@
-#pragma once
-#include <string>
+#ifndef _Piece_
+#define _Piece_
 enum class PieceName
 {
 	None = 0,
-	Pawn = 1,
-	Knight = 2,
-	Bishop = 3,
-	Rook = 4,
-	Queen = 5,
-	King = 6
+	Pawn,
+	Knight,
+	Bishop,
+	Rook,
+	Queen,
+	King
 };
+
 enum class Color
 {
-	None = 1,
-	White = 2,
-	Black = 3
+	None = 0,
+	White,
+	Black
 };
-class Piece
+
+struct Piece
 {
-public:
 	Color color;
 	PieceName name;
 };
+#endif _Piece_
