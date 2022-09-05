@@ -1,16 +1,18 @@
-#ifndef _Board_
-#define _Board_
+#ifndef BOARD
+#define BOARD
+
+#include <vector> 
+
 #include "Piece.h"
-#include <vector>
 #include "Figur.h"
 
 class Board 
 {
-private:
-	std::vector<std::vector<Figur*>> figur;
-	bool game_color;
 public:
 	Board();
-	void Start(Coordinates coordinates, Coordinates new_coordinates, bool color);
+	void Start(Coordinates coord);
+private:
+	std::vector<std::vector<Figur*>> figur;
+	//bool game_color;
 };
-#endif _Board_
+#endif BOARD

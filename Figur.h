@@ -1,7 +1,11 @@
-#ifndef _Figur_
-#define _Figur_
-#include "Piece.h"
+#ifndef FIGUR
+#define FIGUR
+
 #include <vector>
+#include <iostream>
+
+#include "Piece.h"
+
 class Coordinates
 {
 public:
@@ -21,7 +25,9 @@ class Pawn : public Figur
 {
 public:
 	Pawn(Figur* figur, Color color , Coordinates c) {
+		std::cout << "mmmm" << std::endl;
 		if (color == Color::White) {
+			std::cout << "mmmm" << std::endl;
 			figur->piece = { Color::White, PieceName::Rook };
 			figur->coord = { c.x,c.y };
 		}
@@ -58,13 +64,17 @@ class Rook : virtual public Figur
 {
 public:
 	Rook() {}
-	Rook(Figur* figur, Color color, Coordinates c) {
-		if (color == Color::White) {
-			figur->piece = { Color::White, PieceName::Rook };
-			figur->coord = { c.x,c.y };
-		}
-	}
-	std::vector<Coordinates> WhereCanMove(std::vector<std::vector<Figur*>> figur, Coordinates c) override;
+	//Rook(Figur* figur) {
+	//	std::cout << "mmmm" << std::endl;
+	//	//if (color == Color::White) {
+	//		figur->piece = {Color::White, PieceName::Rook};
+	//		figur->coord = {0,0};
+	//	//}
+	//}
+	std::vector<Coordinates> WhereCanMove(std::vector<std::vector<Figur*>> figur, Coordinates c) override {
+		std::vector<Coordinates> rookMove;
+		return rookMove;
+	};
 };
 
 class Queen : public Bishop, public Rook
@@ -91,4 +101,4 @@ public:
 	std::vector<Coordinates> WhereCanMove(std::vector<std::vector<Figur*>> figur, Coordinates c) override;
 };
 
-#endif _Figur_
+#endif FIGUR

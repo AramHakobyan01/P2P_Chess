@@ -1,5 +1,6 @@
-#ifndef _Piece_
-#define _Piece_
+#ifndef PIECE
+#define PIECE
+
 enum class PieceName
 {
 	None = 0,
@@ -23,4 +24,4 @@ struct Piece
 	Color color;
 	PieceName name;
 };
-#endif _Piece_
+#endif PIECE
