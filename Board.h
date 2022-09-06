@@ -10,9 +10,10 @@ class Board
 {
 public:
 	Board();
+	void Move(Coordinates c, Coordinates new_c);
 	void Start(Coordinates coord);
 private:
-	std::vector<std::vector<Figur*>> figur;
+	std::vector<std::vector<Figur*>> figur{8};
 	//bool game_color;
 };
-#endif BOARD
+#endif //BOARD

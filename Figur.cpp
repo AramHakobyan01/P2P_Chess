@@ -15,17 +15,17 @@ std::vector<Coordinates> Pawn::WhereCanMove(std::vector<std::vector<Figur*>> fig
 					}
 				}
 			}
-			if (figur[c.x + 1][c.y]->piece.name == PieceName::None) {
+			if (c.x + 1 < 8 && figur[c.x + 1][c.y]->piece.name == PieceName::None) {
 				if (!halp.AreChacking(figur, c, { c.x + 1,c.y })) {
 					pawnMove.push_back({ c.x + 1,c.y });
 				}
 			}
-			if (figur[c.x + 1][c.y - 1]->piece.name != PieceName::None && figur[c.x + 1][c.y - 1]->piece.color == Color::Black) {
+			if (c.y - 1 >= 0 && c.x + 1 < 8 && figur[c.x + 1][c.y - 1]->piece.name != PieceName::None && figur[c.x + 1][c.y - 1]->piece.color == Color::Black) {
 				if (!halp.AreChacking(figur, c, { c.x + 1,c.y - 1 })) {
 					pawnMove.push_back({ c.x + 1,c.y - 1 });
 				}
 			}
-			if (figur[c.x + 1][c.y + 1]->piece.name != PieceName::None && figur[c.x + 1][c.y + 1]->piece.color == Color::Black) {
+			if (c.y + 1 < 8 && c.x + 1 < 8 && figur[c.x + 1][c.y + 1]->piece.name != PieceName::None && figur[c.x + 1][c.y + 1]->piece.color == Color::Black) {
 				if (!halp.AreChacking(figur, c, { c.x + 1,c.y + 1 })) {
 					pawnMove.push_back({ c.x + 1,c.y + 1 });
 				}
@@ -65,42 +65,42 @@ std::vector<Coordinates> Knight::WhereCanMove(std::vector<std::vector<Figur*>> f
 	std::vector<Coordinates> knightMove;
 	Halper halp;
 	if (!halp.AreChacking(figur, c, c)) {
-		if(figur[c.x][c.y]->piece.color != figur[c.x + 1][c.y + 2]->piece.color && c.x + 1 < 8 && c.y + 2 < 8){
+		if(c.x + 1 < 8 && c.y + 2 < 8 && figur[c.x][c.y]->piece.color != figur[c.x + 1][c.y + 2]->piece.color){
 			if (!halp.AreChacking(figur, c, { c.x + 1,c.y + 2 })) {
 				knightMove.push_back({ c.x + 1,c.y + 2 });
 			}
 		}
-		if (figur[c.x][c.y]->piece.color != figur[c.x + 1][c.y - 2]->piece.color && c.x + 1 < 8 && c.y - 2 >= 0) {
+		if (c.x + 1 < 8 && c.y - 2 >= 0 && figur[c.x][c.y]->piece.color != figur[c.x + 1][c.y - 2]->piece.color ) {
 			if (!halp.AreChacking(figur, c, { c.x + 1,c.y - 2 })) {
 				knightMove.push_back({ c.x + 1,c.y - 2 });
 			}
 		}
-		if (figur[c.x][c.y]->piece.color != figur[c.x - 1][c.y + 2]->piece.color && c.x - 1 >= 0 && c.y + 2 < 8) {
+		if (c.x - 1 >= 0 && c.y + 2 < 8 && figur[c.x][c.y]->piece.color != figur[c.x - 1][c.y + 2]->piece.color ) {
 			if (!halp.AreChacking(figur, c, { c.x - 1,c.y + 2 })) {
 				knightMove.push_back({ c.x - 1,c.y + 2 });
 			}
 		}
-		if (figur[c.x][c.y]->piece.color != figur[c.x - 1][c.y - 2]->piece.color && c.x - 1 >= 0 && c.y - 2 >= 0) {
+		if (c.x - 1 >= 0 && c.y - 2 >= 0 && figur[c.x][c.y]->piece.color != figur[c.x - 1][c.y - 2]->piece.color) {
 			if (!halp.AreChacking(figur, c, { c.x - 1,c.y - 2 })) {
 				knightMove.push_back({ c.x - 1,c.y - 2 });
 			}
 		}
-		if (figur[c.x][c.y]->piece.color != figur[c.x + 2][c.y + 1]->piece.color && c.x + 2 < 8 && c.y + 1 < 8) {
+		if (c.x + 2 < 8 && c.y + 1 < 8 && figur[c.x][c.y]->piece.color != figur[c.x + 2][c.y + 1]->piece.color ) {
 			if (!halp.AreChacking(figur, c, { c.x + 2,c.y + 1 })) {
 				knightMove.push_back({ c.x + 2,c.y + 1 });
 			}
 		}
-		if (figur[c.x][c.y]->piece.color != figur[c.x + 2][c.y - 1]->piece.color && c.x + 2 < 8 && c.y - 1 >= 0) {
+		if (c.x + 2 < 8 && c.y - 1 >= 0 && figur[c.x][c.y]->piece.color != figur[c.x + 2][c.y - 1]->piece.color ) {
 			if (!halp.AreChacking(figur, c, { c.x + 2,c.y - 1 })) {
 				knightMove.push_back({ c.x + 2,c.y - 1 });
 			}
 		}
-		if (figur[c.x][c.y]->piece.color != figur[c.x - 2][c.y + 1]->piece.color && c.x - 2 >= 0 && c.y + 1 < 8) {
+		if (c.x - 2 >= 0 && c.y + 1 < 8 && figur[c.x][c.y]->piece.color != figur[c.x - 2][c.y + 1]->piece.color) {
 			if (!halp.AreChacking(figur, c, { c.x - 2,c.y + 1 })) {
 				knightMove.push_back({ c.x - 2,c.y + 1 });
 			}
 		}
-		if (figur[c.x][c.y]->piece.color != figur[c.x - 2][c.y - 1]->piece.color && c.x - 2 >= 0 && c.y - 1 >= 0) {
+		if (c.x - 2 >= 0 && c.y - 1 >= 0 && figur[c.x][c.y]->piece.color != figur[c.x - 2][c.y - 1]->piece.color ) {
 			if (!halp.AreChacking(figur, c, { c.x - 2,c.y - 1 })) {
 				knightMove.push_back({ c.x - 2,c.y - 1 });
 			}
@@ -116,7 +116,7 @@ std::vector<Coordinates> Bishop::WhereCanMove(std::vector<std::vector<Figur*>> f
 		for (int i = c.x + 1, j = c.y + 1; i < 8 && j < 8; i++, j++) {
 			if (figur[c.x][c.y]->piece.color != figur[i][j]->piece.color) {
 				if(!halp.AreChacking(figur, c, { i,j })){
-					if (figur[c.x][c.y]->piece.color != Color::None) {
+					if (figur[i][j]->piece.color != Color::None) {
 						bishopMove.push_back({ i,j });
 						break;
 					}
@@ -132,7 +132,7 @@ std::vector<Coordinates> Bishop::WhereCanMove(std::vector<std::vector<Figur*>> f
 		for (int i = c.x + 1, j = c.y - 1; i < 8 && j >= 0; i++, j--) {
 			if (figur[c.x][c.y]->piece.color != figur[i][j]->piece.color) {
 				if (!halp.AreChacking(figur, c, { i,j })) {
-					if (figur[c.x][c.y]->piece.color != Color::None) {
+					if (figur[i][j]->piece.color != Color::None) {
 						bishopMove.push_back({ i,j });
 						break;
 					}
@@ -148,7 +148,7 @@ std::vector<Coordinates> Bishop::WhereCanMove(std::vector<std::vector<Figur*>> f
 		for (int i = c.x - 1, j = c.y + 1; i >= 0 && j < 8; i--, j++) {
 			if (figur[c.x][c.y]->piece.color != figur[i][j]->piece.color) {
 				if (!halp.AreChacking(figur, c, { i,j })) {
-					if (figur[c.x][c.y]->piece.color != Color::None) {
+					if (figur[i][j]->piece.color != Color::None) {
 						bishopMove.push_back({ i,j });
 						break;
 					}
@@ -165,7 +165,7 @@ std::vector<Coordinates> Bishop::WhereCanMove(std::vector<std::vector<Figur*>> f
 		for (int i = c.x - 1, j = c.y - 1; i >= 0 && j >= 0; i--, j--) {
 			if (figur[c.x][c.y]->piece.color != figur[i][j]->piece.color) {
 				if (!halp.AreChacking(figur, c, { i,j })) {
-					if (figur[c.x][c.y]->piece.color != Color::None) {
+					if (figur[i][j]->piece.color != Color::None) {
 						bishopMove.push_back({ i,j });
 						break;
 					}
@@ -182,77 +182,77 @@ std::vector<Coordinates> Bishop::WhereCanMove(std::vector<std::vector<Figur*>> f
 	return bishopMove;
 }
 
-//std::vector<Coordinates> Rook::WhereCanMove(std::vector<std::vector<Figur*>> figur, Coordinates c) {
-//	std::vector<Coordinates> rookMove;
-//	Halper halp;
-//	if (!halp.AreChacking(figur, c, c)) {
-//		for (int i = c.x + 1, j = c.y; i < 8; i++) {
-//			if (figur[c.x][c.y]->piece.color != figur[i][j]->piece.color) {
-//				if (!halp.AreChacking(figur, c, { i,j })) {
-//					if (figur[c.x][c.y]->piece.color != Color::None) {
-//						rookMove.push_back({ i,j });
-//						break;
-//					}
-//					else {
-//						rookMove.push_back({ i,j });
-//					}
-//				}
-//			}
-//			else {
-//				break;
-//			}
-//		}
-//		for (int i = c.x - 1, j = c.y; i >= 0; i--) {
-//			if (figur[c.x][c.y]->piece.color != figur[i][j]->piece.color) {
-//				if (!halp.AreChacking(figur, c, { i,j })) {
-//					if (figur[c.x][c.y]->piece.color != Color::None) {
-//						rookMove.push_back({ i,j });
-//						break;
-//					}
-//					else {
-//						rookMove.push_back({ i,j });
-//					}
-//				}
-//			}
-//			else {
-//				break;
-//			}
-//		}
-//	}
-//	for (int i = c.x, j = c.y + 1; j < 8; j++) {
-//		if (figur[c.x][c.y]->piece.color != figur[i][j]->piece.color) {
-//			if (!halp.AreChacking(figur, c, { i,j })) {
-//				if (figur[c.x][c.y]->piece.color != Color::None) {
-//					rookMove.push_back({ i,j });
-//					break;
-//				}
-//				else {
-//					rookMove.push_back({ i,j });
-//				}
-//			}
-//		}
-//		else {
-//			break;
-//		}
-//	}
-//	for (int i = c.x, j = c.y - 1; j >= 0; j--) {
-//		if (figur[c.x][c.y]->piece.color != figur[i][j]->piece.color) {
-//			if (!halp.AreChacking(figur, c, { i,j })) {
-//				if (figur[c.x][c.y]->piece.color != Color::None) {
-//					rookMove.push_back({ i,j });
-//					break;
-//				}
-//				else {
-//					rookMove.push_back({ i,j });
-//				}
-//			}
-//		}
-//		else {
-//			break;
-//		}
-//	}
-//	return rookMove;
-//}
+std::vector<Coordinates> Rook::WhereCanMove(std::vector<std::vector<Figur*>> figur, Coordinates c) {
+	std::vector<Coordinates> rookMove;
+	Halper halp;
+	if (!halp.AreChacking(figur, c, c)) {
+		for (int i = c.x + 1, j = c.y; i < 8; i++) {
+			if (figur[c.x][c.y]->piece.color != figur[i][j]->piece.color) {
+				if (!halp.AreChacking(figur, c, { i,j })) {
+					if (figur[i][j]->piece.color != Color::None) {
+						rookMove.push_back({ i,j });
+						break;
+					}
+					else {
+						rookMove.push_back({ i,j });
+					}
+				}
+			}
+			else {
+				break;
+			}
+		}
+		for (int i = c.x - 1, j = c.y; i >= 0; i--) {
+			if (figur[c.x][c.y]->piece.color != figur[i][j]->piece.color) {
+				if (!halp.AreChacking(figur, c, { i,j })) {
+					if (figur[i][j]->piece.color != Color::None) {
+						rookMove.push_back({ i,j });
+						break;
+					}
+					else {
+						rookMove.push_back({ i,j });
+					}
+				}
+			}
+			else {
+				break;
+			}
+		}
+	}
+	for (int i = c.x, j = c.y + 1; j < 8; j++) {
+		if (figur[c.x][c.y]->piece.color != figur[i][j]->piece.color) {
+			if (!halp.AreChacking(figur, c, { i,j })) {
+				if (figur[i][j]->piece.color != Color::None) {
+					rookMove.push_back({ i,j });
+					break;
+				}
+				else {
+					rookMove.push_back({ i,j });
+				}
+			}
+		}
+		else {
+			break;
+		}
+	}
+	for (int i = c.x, j = c.y - 1; j >= 0; j--) {
+		if (figur[c.x][c.y]->piece.color != figur[i][j]->piece.color) {
+			if (!halp.AreChacking(figur, c, { i,j })) {
+				if (figur[i][j]->piece.color != Color::None) {
+					rookMove.push_back({ i,j });
+					break;
+				}
+				else {
+					rookMove.push_back({ i,j });
+				}
+			}
+		}
+		else {
+			break;
+		}
+	}
+	return rookMove;
+}
 
 std::vector<Coordinates> Queen::WhereCanMove(std::vector<std::vector<Figur*>> figur, Coordinates c) {
 	std::vector<Coordinates> queenMove(Rook::WhereCanMove(figur, c));
@@ -265,42 +265,42 @@ std::vector<Coordinates> King::WhereCanMove(std::vector<std::vector<Figur*>> fig
 	std::vector<Coordinates> kingMove;
 	Halper halp;
 	if (!halp.AreChacking(figur, c, c)) {
-		if (figur[c.x][c.y]->piece.color != figur[c.x + 1][c.y]->piece.color && c.x + 1 < 8 ) {
+		if (c.x + 1 < 8 && figur[c.x][c.y]->piece.color != figur[c.x + 1][c.y]->piece.color) {
 			if (!halp.AreChacking(figur, c, { c.x + 1,c.y })) {
 				kingMove.push_back({ c.x + 1,c.y });
 			}
 		}
-		if (figur[c.x][c.y]->piece.color != figur[c.x][c.y + 1]->piece.color  && c.y + 2 < 8) {
+		if (c.y + 2 < 8 && figur[c.x][c.y]->piece.color != figur[c.x][c.y + 1]->piece.color) {
 			if (!halp.AreChacking(figur, c, { c.x,c.y + 1 })) {
 				kingMove.push_back({ c.x,c.y + 1 });
 			}
 		}
-		if (figur[c.x][c.y]->piece.color != figur[c.x - 1][c.y]->piece.color && c.x - 1 >= 0 ) {
+		if (c.x - 1 >= 0 && figur[c.x][c.y]->piece.color != figur[c.x - 1][c.y]->piece.color ) {
 			if (!halp.AreChacking(figur, c, { c.x - 1,c.y })) {
 				kingMove.push_back({ c.x - 1,c.y });
 			}
 		}
-		if (figur[c.x][c.y]->piece.color != figur[c.x][c.y - 1]->piece.color  && c.y - 1 >= 0) {
+		if (c.y - 1 >= 0 && figur[c.x][c.y]->piece.color != figur[c.x][c.y - 1]->piece.color ) {
 			if (!halp.AreChacking(figur, c, { c.x,c.y - 1 })) {
 				kingMove.push_back({ c.x,c.y - 1 });
 			}
 		}
-		if (figur[c.x][c.y]->piece.color != figur[c.x + 1][c.y + 1]->piece.color && c.x + 1 < 8 && c.y + 1 < 8) {
+		if (c.x + 1 < 8 && c.y + 1 < 8 && figur[c.x][c.y]->piece.color != figur[c.x + 1][c.y + 1]->piece.color) {
 			if (!halp.AreChacking(figur, c, { c.x + 1,c.y + 1 })) {
 				kingMove.push_back({ c.x + 1,c.y + 1 });
 			}
 		}
-		if (figur[c.x][c.y]->piece.color != figur[c.x + 1][c.y - 1]->piece.color && c.x + 1 < 8 && c.y - 1 >= 0) {
+		if (c.x + 1 < 8 && c.y - 1 >= 0 && figur[c.x][c.y]->piece.color != figur[c.x + 1][c.y - 1]->piece.color ) {
 			if (!halp.AreChacking(figur, c, { c.x + 1,c.y - 1 })) {
 				kingMove.push_back({ c.x + 1,c.y - 1 });
 			}
 		}
-		if (figur[c.x][c.y]->piece.color != figur[c.x - 1][c.y + 1]->piece.color && c.x - 1 >= 0 && c.y + 1 < 8) {
+		if (c.x - 1 >= 0 && c.y + 1 < 8 && figur[c.x][c.y]->piece.color != figur[c.x - 1][c.y + 1]->piece.color ) {
 			if (!halp.AreChacking(figur, c, { c.x - 1,c.y + 1 })) {
 				kingMove.push_back({ c.x - 1,c.y + 1 });
 			}
 		}
-		if (figur[c.x][c.y]->piece.color != figur[c.x - 1][c.y - 1]->piece.color && c.x - 1 >= 0 && c.y - 1 >= 0) {
+		if (c.x - 1 >= 0 && c.y - 1 >= 0 && figur[c.x][c.y]->piece.color != figur[c.x - 1][c.y - 1]->piece.color) {
 			if (!halp.AreChacking(figur, c, { c.x - 1,c.y - 1 })) {
 				kingMove.push_back({ c.x - 1,c.y - 1 });
 			}

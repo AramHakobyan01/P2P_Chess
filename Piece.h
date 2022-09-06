@@ -24,4 +24,4 @@ struct Piece
 	Color color;
 	PieceName name;
 };
-#endif PIECE
+#endif //PIECE

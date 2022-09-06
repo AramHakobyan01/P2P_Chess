@@ -5,6 +5,11 @@
 
 int main() {
 	Board b;
-	b.Start({ 1,0 });
+	int x;
+	int y;
+	while (1) {
+		std::cin >> x >> y;
+		b.Start({ x,y });
+	}
 	return 0;
 }
