@@ -9,6 +9,6 @@ class Halper
 {
 public:
 	Halper(){}
-	bool AreChacking(std::vector<std::vector<Figur*>> figur, Coordinates c, Coordinates new_c);
+	bool AreChacking(std::vector<std::vector<Figur*>>& figur, Coordinates c, Coordinates new_c);
 };
 #endif //HALPER

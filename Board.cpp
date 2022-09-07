@@ -19,12 +19,16 @@ Board::Board() {
 	}
 
 	color = Color::White;
-	for (int i = 1, j = 0, l = 0; l < 16; l++ ,j++) {
+	for (int i = 1, j = 0, l = 0; l < 16; l++ ) {
+		//std::cout << i << j << std::endl;
 		figur[i].push_back(new Pawn(color, { i,j }));
 		if (l == 7) {
 			j = 0;
 			i = 6;
 			color = Color::Black;
+		}
+		else {
+			j++;
 		}
 	}
 
@@ -73,21 +77,59 @@ void Board::Move(Coordinates c, Coordinates new_c) {
 		figur[new_c.x][new_c.y] = new King(figur[c.x][c.y]->piece.color, { new_c.x,new_c.y });
 		delete figur[c.x][c.y];
 		figur[c.x][c.y] = new None({ c.x,c.y });
+		if (c.y - new_c.y == 2) {
+			if (figur[new_c.x][new_c.y]->piece.color == Color::White) {
+				delete figur[0][2];
+				figur[0][2] = new Rook(figur[new_c.x][new_c.y]->piece.color, { 0,2 });
+				delete figur[0][0];
+				figur[0][0] = new None({ c.x,c.y });
+			}
+			else {
+				delete figur[7][2];
+				figur[7][2] = new Rook(figur[new_c.x][new_c.y]->piece.color, { 7,2 });
+				delete figur[7][0];
+				figur[7][0] = new None({ c.x,c.y });
+			}
+		}
+		else if (c.y - new_c.y == -2) {
+			if (figur[new_c.x][new_c.y]->piece.color == Color::White) {
+				delete figur[0][4];
+				figur[0][4] = new Rook(figur[new_c.x][new_c.y]->piece.color, { 0,2 });
+				delete figur[0][7];
+				figur[0][7] = new None({ c.x,c.y });
+			}
+			else {
+				delete figur[7][4];
+				figur[7][4] = new Rook(figur[new_c.x][new_c.y]->piece.color, { 7,2 });
+				delete figur[7][7];
+				figur[7][7] = new None({ c.x,c.y });
+			}
+		}
+		
 		break;
 	}
 }
 
 void Board::Start(Coordinates coord) {
-	if (coord.x < 8 && coord.x >= 0) {
-		if (coord.y < 8 && coord.y >= 0) {
+	if (coord.x < 8 && coord.x >= 0 && game_color == figur[coord.x][coord.y]->piece.color) {
+		if (coord.y < 8 && coord.y >= 0 && figur[coord.x][coord.y]->piece.name != PieceName::None) {
 			std::vector<Coordinates> move;
 			move = figur[coord.x][coord.y]->WhereCanMove(figur, coord);
+			std::cout << &figur[coord.x][coord.y] << std::endl;
 			for (int i = 0; i < move.size(); i++) {
 				std::cout << move[i].x << move[i].y << std::endl;
 			}
 			Coordinates new_coord;
 			std::cin >> new_coord.x >> new_coord.y;
-			Move(coord, new_coord);
+			if (coord.x != new_coord.x || coord.y != new_coord.y) {
+				Move(coord, new_coord);
+				if (game_color == Color::White) {
+					game_color = Color::Black;
+				}
+				else {
+					game_color = Color::White;
+				}
+			}
 		}
 	}
 }

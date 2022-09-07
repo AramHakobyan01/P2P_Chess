@@ -3,7 +3,7 @@
 #include "Figur.h"
 #include "Halper.h"
 
-std::vector<Coordinates> Pawn::WhereCanMove(std::vector<std::vector<Figur*>> figur, Coordinates c) {
+std::vector<Coordinates> Pawn::WhereCanMove(std::vector<std::vector<Figur*>>& figur, Coordinates c) {
 	std::vector<Coordinates> pawnMove;
 	Halper halp;
 	if (figur[c.x][c.y]->piece.color == Color::White) {
@@ -33,6 +33,7 @@ std::vector<Coordinates> Pawn::WhereCanMove(std::vector<std::vector<Figur*>> fig
 		}
 	}
 	else if (figur[c.x][c.y]->piece.color == Color::Black) {
+		//std::cout << "kkk" << std::endl;
 		if (!halp.AreChacking(figur, c, c)) {
 			if (c.x == 6) {
 				if (figur[c.x - 2][c.y]->piece.name == PieceName::None && figur[c.x - 1][c.y]->piece.name == PieceName::None) {
@@ -41,17 +42,17 @@ std::vector<Coordinates> Pawn::WhereCanMove(std::vector<std::vector<Figur*>> fig
 					}
 				}
 			}
-			if (figur[c.x - 1][c.y]->piece.name == PieceName::None) {
+			if (c.x - 1 >= 0 && figur[c.x - 1][c.y]->piece.name == PieceName::None) {
 				if (!halp.AreChacking(figur, c, { c.x - 1,c.y })) {
 					pawnMove.push_back({ c.x - 1,c.y });
 				}
 			}
-			if (figur[c.x - 1][c.y - 1]->piece.name != PieceName::None && figur[c.x - 1][c.y - 1]->piece.color == Color::White) {
+			if (c.x - 1 >= 0 && c.y - 1 >= 0 && figur[c.x - 1][c.y - 1]->piece.name != PieceName::None && figur[c.x - 1][c.y - 1]->piece.color == Color::White) {
 				if (!halp.AreChacking(figur, c, { c.x - 1,c.y - 1 })) {
 					pawnMove.push_back({ c.x - 1,c.y - 1 });
 				}
 			}
-			if (figur[c.x - 1][c.y + 1]->piece.name != PieceName::None && figur[c.x - 1][c.y + 1]->piece.color == Color::White) {
+			if (c.x - 1 >= 0 && c.y + 1 < 8 && figur[c.x - 1][c.y + 1]->piece.name != PieceName::None && figur[c.x - 1][c.y + 1]->piece.color == Color::White) {
 				if (!halp.AreChacking(figur, c, { c.x - 1,c.y + 1 })) {
 					pawnMove.push_back({ c.x - 1,c.y + 1 });
 				}
@@ -61,7 +62,7 @@ std::vector<Coordinates> Pawn::WhereCanMove(std::vector<std::vector<Figur*>> fig
 	return pawnMove;
 }
 
-std::vector<Coordinates> Knight::WhereCanMove(std::vector<std::vector<Figur*>> figur, Coordinates c) {
+std::vector<Coordinates> Knight::WhereCanMove(std::vector<std::vector<Figur*>>& figur, Coordinates c) {
 	std::vector<Coordinates> knightMove;
 	Halper halp;
 	if (!halp.AreChacking(figur, c, c)) {
@@ -109,7 +110,7 @@ std::vector<Coordinates> Knight::WhereCanMove(std::vector<std::vector<Figur*>> f
 	return knightMove;
 }
 
-std::vector<Coordinates> Bishop::WhereCanMove(std::vector<std::vector<Figur*>> figur, Coordinates c) {
+std::vector<Coordinates> Bishop::WhereCanMove(std::vector<std::vector<Figur*>>& figur, Coordinates c) {
 	std::vector<Coordinates> bishopMove;
 	Halper halp;
 	if (!halp.AreChacking(figur, c, c)) {
@@ -182,7 +183,7 @@ std::vector<Coordinates> Bishop::WhereCanMove(std::vector<std::vector<Figur*>> f
 	return bishopMove;
 }
 
-std::vector<Coordinates> Rook::WhereCanMove(std::vector<std::vector<Figur*>> figur, Coordinates c) {
+std::vector<Coordinates> Rook::WhereCanMove(std::vector<std::vector<Figur*>>& figur, Coordinates c) {
 	std::vector<Coordinates> rookMove;
 	Halper halp;
 	if (!halp.AreChacking(figur, c, c)) {
@@ -254,14 +255,14 @@ std::vector<Coordinates> Rook::WhereCanMove(std::vector<std::vector<Figur*>> fig
 	return rookMove;
 }
 
-std::vector<Coordinates> Queen::WhereCanMove(std::vector<std::vector<Figur*>> figur, Coordinates c) {
-	std::vector<Coordinates> queenMove(Rook::WhereCanMove(figur, c));
+std::vector<Coordinates> Queen::WhereCanMove(std::vector<std::vector<Figur*>>& figur, Coordinates c) {
+	std::vector<Coordinates> queenMove = Rook::WhereCanMove(figur, c);
 	std::vector<Coordinates> bishop = Bishop::WhereCanMove(figur, c);
 	queenMove.insert(queenMove.end(), bishop.begin(), bishop.end());
 	return queenMove;
 }
 
-std::vector<Coordinates> King::WhereCanMove(std::vector<std::vector<Figur*>> figur, Coordinates c) {
+std::vector<Coordinates> King::WhereCanMove(std::vector<std::vector<Figur*>>& figur, Coordinates c) {
 	std::vector<Coordinates> kingMove;
 	Halper halp;
 	if (!halp.AreChacking(figur, c, c)) {
@@ -270,7 +271,7 @@ std::vector<Coordinates> King::WhereCanMove(std::vector<std::vector<Figur*>> fig
 				kingMove.push_back({ c.x + 1,c.y });
 			}
 		}
-		if (c.y + 2 < 8 && figur[c.x][c.y]->piece.color != figur[c.x][c.y + 1]->piece.color) {
+		if (c.y + 1 < 8 && figur[c.x][c.y]->piece.color != figur[c.x][c.y + 1]->piece.color) {
 			if (!halp.AreChacking(figur, c, { c.x,c.y + 1 })) {
 				kingMove.push_back({ c.x,c.y + 1 });
 			}

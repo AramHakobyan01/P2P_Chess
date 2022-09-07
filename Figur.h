@@ -17,7 +17,7 @@ class Figur
 public:
 	Piece piece;
 	Coordinates coord;
-	virtual std::vector<Coordinates> WhereCanMove(std::vector<std::vector<Figur*>>  figur, Coordinates c) = 0;
+	virtual std::vector<Coordinates> WhereCanMove(std::vector<std::vector<Figur*>>&  figur, Coordinates c) = 0;
 	virtual ~Figur() = default;
 };
 
@@ -27,9 +27,9 @@ public:
 	Pawn(Color color , Coordinates c) {
 		piece = { color, PieceName::Pawn };
 		coord = { c.x,c.y };
-		//std::cout << c.x << c.y << std::endl;
+		std::cout << c.x << c.y << std::endl;
 	}
-	std::vector<Coordinates> WhereCanMove(std::vector<std::vector<Figur*>> figur, Coordinates c) override;
+	std::vector<Coordinates> WhereCanMove(std::vector<std::vector<Figur*>>& figur, Coordinates c) override;
 };
 
 class Knight : public Figur
@@ -39,7 +39,7 @@ public:
 		piece = { color, PieceName::Knight };
 		coord = { c.x,c.y };
 	}
-	std::vector<Coordinates> WhereCanMove(std::vector<std::vector<Figur*>> figur, Coordinates c) override;
+	std::vector<Coordinates> WhereCanMove(std::vector<std::vector<Figur*>>& figur, Coordinates c) override;
 };
 
 class Bishop : virtual public Figur
@@ -50,7 +50,7 @@ public:
 		piece = { color, PieceName::Bishop };
 		coord = { c.x,c.y };
 	}
-	std::vector<Coordinates> WhereCanMove(std::vector<std::vector<Figur*>> figur, Coordinates c) override;
+	std::vector<Coordinates> WhereCanMove(std::vector<std::vector<Figur*>>& figur, Coordinates c) override;
 };
 
 class Rook : virtual public Figur
@@ -61,7 +61,7 @@ public:
 		piece = { color, PieceName::Rook };
 		coord = { c.x,c.y };
 	}
-	std::vector<Coordinates> WhereCanMove(std::vector<std::vector<Figur*>> figur, Coordinates c) override;
+	std::vector<Coordinates> WhereCanMove(std::vector<std::vector<Figur*>>& figur, Coordinates c) override;
 	virtual ~Rook() {};
 };
 
@@ -72,7 +72,7 @@ public:
 		piece = { color, PieceName::Queen };
 		coord = { c.x,c.y };
 	}
-	std::vector<Coordinates> WhereCanMove(std::vector<std::vector<Figur*>> figur, Coordinates c) override;
+	std::vector<Coordinates> WhereCanMove(std::vector<std::vector<Figur*>>& figur, Coordinates c) override;
 };
 
 class King : public Figur
@@ -82,7 +82,7 @@ public:
 		piece = { color, PieceName::King };
 		coord = { c.x,c.y };
 	}
-	std::vector<Coordinates> WhereCanMove(std::vector<std::vector<Figur*>> figur, Coordinates c) override;
+	std::vector<Coordinates> WhereCanMove(std::vector<std::vector<Figur*>>& figur, Coordinates c) override;
 };
 
 class None : public Figur 
@@ -92,7 +92,7 @@ public:
 		piece = { Color::None,PieceName::None };
 		coord = { c.x,c.y };
 	}
-	std::vector<Coordinates> WhereCanMove(std::vector<std::vector<Figur*>> figur, Coordinates c) override {
+	std::vector<Coordinates> WhereCanMove(std::vector<std::vector<Figur*>>& figur, Coordinates c) override {
 		std::vector<Coordinates> none;
 		return none;
 	}
