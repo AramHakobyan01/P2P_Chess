@@ -27,7 +27,7 @@ public:
 	Pawn(Color color , Coordinates c) {
 		piece = { color, PieceName::Pawn };
 		coord = { c.x,c.y };
-		std::cout << c.x << c.y << std::endl;
+		//std::cout << c.x << c.y << std::endl;
 	}
 	std::vector<Coordinates> WhereCanMove(std::vector<std::vector<Figur*>>& figur, Coordinates c) override;
 };

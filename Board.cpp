@@ -115,7 +115,7 @@ void Board::Start(Coordinates coord) {
 		if (coord.y < 8 && coord.y >= 0 && figur[coord.x][coord.y]->piece.name != PieceName::None) {
 			std::vector<Coordinates> move;
 			move = figur[coord.x][coord.y]->WhereCanMove(figur, coord);
-			std::cout << &figur[coord.x][coord.y] << std::endl;
+			//std::cout << &figur[coord.x][coord.y] << std::endl;
 			for (int i = 0; i < move.size(); i++) {
 				std::cout << move[i].x << move[i].y << std::endl;
 			}
