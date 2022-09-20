@@ -4,12 +4,9 @@
 #include <vector>
 
 int main() {
-	Board b;
-	int x;
-	int y;
-	while (1) {
-		std::cin >> x >> y;
-		b.Start({ x,y });
-	}
+Board b;
+	b.Start();
+	
+
 	return 0;
 }
