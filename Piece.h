@@ -19,6 +19,7 @@ enum class Color
 	Black
 };
 
+
 struct Piece
 {
 	Color color;

@@ -3,24 +3,30 @@
 
 #include <vector>
 #include <iostream>
+#include <QString>
 
 #include "Piece.h"
 
 struct  Coordinates
 {
-	int x;
-	int y;
+    int x;
+    int y;
 };
 
+
 class Figur
-{	
+{
 public:
 	Piece getP() {
 		return piece;
-	}
+    }
+    QString getPath() {
+        return path;
+    }
 	virtual std::vector<Coordinates> WhereCanMove(std::vector<std::vector<Figur*>>&  figur, Coordinates c, Coordinates king_c) = 0;
-	virtual ~Figur() = default;
+    virtual ~Figur() {};
 protected:
+    QString path;
 	Piece piece;
 	bool AreChacking(std::vector<std::vector<Figur*>>& figur, Coordinates c, Coordinates new_c, Coordinates king_c);
 };
@@ -28,10 +34,14 @@ protected:
 class Pawn : public Figur
 {
 public:
-	Pawn(Color color) {
+    Pawn(Color color) {
 		piece = { color, PieceName::Pawn };
-		//coord = { c.x,c.y };
-			p = false;
+        if(color == Color::White){
+            path = ":/image/Pawn1.png";
+        }else{
+           path = ":/image/Pawn.png";
+        }
+        p = false;
 	}
 	bool get() {
 		return p;
@@ -41,6 +51,7 @@ public:
 
 	}
 	std::vector<Coordinates> WhereCanMove(std::vector<std::vector<Figur*>>& figur, Coordinates c, Coordinates king_c) override;
+    virtual ~Pawn() {};
 private:
 	bool p;
 };
@@ -48,30 +59,48 @@ private:
 class Knight : public Figur
 {
 public:
-	Knight( Color color) {
+    Knight( Color color) {
 		piece = { color, PieceName::Knight };
+        if(color == Color::White){
+            path = ":/image/Knight1.png";
+        }else{
+           path = ":/image/Knight.png";
+        }
 		//coord = { c.x,c.y };
 	}
 	std::vector<Coordinates> WhereCanMove(std::vector<std::vector<Figur*>>& figur, Coordinates c, Coordinates king_c) override;
+    virtual ~Knight() {};
 };
 
 class Bishop : virtual public Figur
 {
 public:
 	Bishop() {}
-	Bishop(Color color) {
+    Bishop(Color color) {
 		piece = { color, PieceName::Bishop };
+        if(color == Color::White){
+            path = ":/image/Bishop1.png";
+        }else{
+           path = ":/image/Bishop.png";
+        }
 		//coord = { c.x,c.y };
 	}
 	std::vector<Coordinates> WhereCanMove(std::vector<std::vector<Figur*>>& figur, Coordinates c, Coordinates king_c) override;
+    virtual ~Bishop() {};
 };
 
 class Rook : virtual public Figur
 {
 public:
 	Rook() {}
-	Rook(Color color) {
+    Rook(Color color) {
 		piece = { color, PieceName::Rook };
+        if(color == Color::White){
+            path = ":/image/Rook1.png";
+        }else{
+           path = ":/image/Rook.png";
+        }
+
 		//coord = { c.x,c.y };
 	}
 	bool get() {
@@ -90,18 +119,29 @@ private:
 class Queen : public Bishop, public Rook
 {
 public:
-	Queen(Color color)  {
+    Queen(Color color)  {
 		piece = { color, PieceName::Queen };
+        if(color == Color::White){
+            path = ":/image/Queen1.png";
+        }else{
+           path = ":/image/Queen.png";
+        }
 		//coord = { c.x,c.y };
 	}
 	std::vector<Coordinates> WhereCanMove(std::vector<std::vector<Figur*>>& figur, Coordinates c, Coordinates king_c) override;
+    virtual ~Queen() {};
 };
 
 class King : public Figur
 {
 public:
-	King(Color color) {
+    King(Color color) {
 		piece = { color, PieceName::King };
+        if(color == Color::White){
+            path = ":/image/King1.png";
+        }else{
+           path = ":/image/King.png";
+        }
 		//coord = { c.x,c.y };
 	}
 	bool get() {
@@ -112,6 +152,7 @@ public:
 
 	}
 	std::vector<Coordinates> WhereCanMove(std::vector<std::vector<Figur*>>& figur, Coordinates c, Coordinates king_c) override;
+    virtual ~King   () {};
 private:
 	bool k = true;
 };
@@ -119,13 +160,15 @@ private:
 class None : public Figur 
 {
 public:
-	None(Coordinates c) {
-		piece = { Color::None,PieceName::None };
+    None() {
+        //path = ":/image/None.png";
 		//coord = { c.x,c.y };
 	}
 	std::vector<Coordinates> WhereCanMove(std::vector<std::vector<Figur*>>& figur, Coordinates c, Coordinates king_c) override {
 		return {};
 	}
+    virtual ~None() {};
+
 };
 
 #endif //FIGUR
