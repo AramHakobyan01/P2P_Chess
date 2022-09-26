@@ -104,7 +104,7 @@ void Board::Start(MainWindow** w) {
         QApplication::sync();
         Coordinates coord = (*w)->get();
         while(coord.x == -1){
-           //QApplication::sync();
+           QApplication::sync();
            coord = (*w)->get();
         }
         (*w)->set();

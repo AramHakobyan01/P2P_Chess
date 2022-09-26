@@ -25,7 +25,6 @@ public:
         QPushButton* button_ = new QPushButton(wid);
         button_->resize(50,50);
         button_->move(coord.y*50, coord.x*50);
-        button_->setStyleSheet("QAbstractButton{background-color: black;}");
 
 
 //        if(((coord.x + coord.y)%2) == 0){
