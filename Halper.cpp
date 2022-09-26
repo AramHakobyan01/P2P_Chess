@@ -18,11 +18,8 @@ bool Figur::AreChacking(std::vector<std::vector<Figur*>>& figur, Coordinates c, 
             if (figur[i][j]->getP().name == PieceName::Queen || figur[i][j]->getP().name == PieceName::Rook) {
                 count++;
                 break;
-            }else if(figur[i][j]->getP().name != PieceName::Queen){
-                break;
             }
-        }
-        else {
+        }else if(figur[i][j]->getP().color == color) {
             break;
         }
     }
@@ -37,11 +34,8 @@ bool Figur::AreChacking(std::vector<std::vector<Figur*>>& figur, Coordinates c, 
             if (figur[i][j]->getP().name == PieceName::Queen || figur[i][j]->getP().name == PieceName::Rook) {
                 count++;
                 break;
-            }else if(figur[i][j]->getP().name != PieceName::Queen){
-                break;
             }
-        }
-        else {
+        }else if(figur[i][j]->getP().color == color) {
             break;
         }
     }
@@ -56,11 +50,8 @@ bool Figur::AreChacking(std::vector<std::vector<Figur*>>& figur, Coordinates c, 
             if (figur[i][j]->getP().name == PieceName::Queen || figur[i][j]->getP().name == PieceName::Rook) {
                 count++;
                 break;
-            }else if(figur[i][j]->getP().name != PieceName::Queen){
-                break;
             }
-        }
-        else {
+        }else if(figur[i][j]->getP().color == color) {
             break;
         }
     }
@@ -75,13 +66,11 @@ bool Figur::AreChacking(std::vector<std::vector<Figur*>>& figur, Coordinates c, 
             if (figur[i][j]->getP().name == PieceName::Queen || figur[i][j]->getP().name == PieceName::Rook) {
                 count++;
                 break;
-            }else if(figur[i][j]->getP().name != PieceName::Queen){
-                break;
             }
-        }
-        else {
+        }else if(figur[i][j]->getP().color == color) {
             break;
         }
+
     }
     for (int i = king_c.x + 1, j = king_c.y + 1; j < 8 && i < 8; j++, i++) {
         if (i == c.x && j == c.y) {
@@ -94,11 +83,8 @@ bool Figur::AreChacking(std::vector<std::vector<Figur*>>& figur, Coordinates c, 
             if (figur[i][j]->getP().name == PieceName::Queen || figur[i][j]->getP().name == PieceName::Bishop) {
                 count++;
                 break;
-            }else if(figur[i][j]->getP().name != PieceName::Queen){
-                break;
             }
-        }
-        else {
+        }else if(figur[i][j]->getP().color == color) {
             break;
         }
     }
@@ -113,11 +99,8 @@ bool Figur::AreChacking(std::vector<std::vector<Figur*>>& figur, Coordinates c, 
             if (figur[i][j]->getP().name == PieceName::Queen || figur[i][j]->getP().name == PieceName::Bishop) {
                 count++;
                 break;
-            }else if(figur[i][j]->getP().name != PieceName::Queen){
-                break;
             }
-        }
-        else {
+        }else if(figur[i][j]->getP().color == color) {
             break;
         }
     }
@@ -132,11 +115,8 @@ bool Figur::AreChacking(std::vector<std::vector<Figur*>>& figur, Coordinates c, 
             if (figur[i][j]->getP().name == PieceName::Queen || figur[i][j]->getP().name == PieceName::Bishop) {
                 count++;
                 break;
-            }else if(figur[i][j]->getP().name != PieceName::Queen){
-                break;
             }
-        }
-        else {
+        }else if(figur[i][j]->getP().color == color) {
             break;
         }
     }
@@ -151,11 +131,8 @@ bool Figur::AreChacking(std::vector<std::vector<Figur*>>& figur, Coordinates c, 
             if (figur[i][j]->getP().name == PieceName::Queen || figur[i][j]->getP().name == PieceName::Bishop) {
                 count++;
                 break;
-            }else if(figur[i][j]->getP().name != PieceName::Queen){
-                break;
             }
-        }
-        else {
+        }else if(figur[i][j]->getP().color == color) {
             break;
         }
     }
