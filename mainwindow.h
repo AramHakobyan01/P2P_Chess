@@ -2,14 +2,12 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include <QMessageBox>
+#include <QPixmap>
+#include <QIcon>
 #include <QPushButton>
-#include <QPalette>
-#include <QColor>
-#include <iostream>
 
 #include "Figur.h"
-
+#include "Piece.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -20,45 +18,28 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 
 public:
-    void ShowMove(std::vector<Coordinates> move);
-    void CreateButton(std::vector<std::vector<Figur*>>& figur, Coordinates coord){
-        QPushButton* button_ = new QPushButton(wid);
-        button_->resize(50,50);
-        button_->move(coord.y*50, coord.x*50);
-
-
-//        if(((coord.x + coord.y)%2) == 0){
-//        }else{
-//            button_->setStyleSheet(QString("background-color: rgb(255,255,255);"));
-//        }
-
-        QPixmap a(figur[coord.x][coord.y]->getPath());
-        QIcon b(a);
-        button_->setIcon(b);
-        button_->setIconSize(button_->size());
-        //QObject::connect(button_, SIGNAL(clicked()),this, SLOT(ClickedSlot()));
-       // button->show();
-       // wid->show();
-        //wid->show();
-        connect(button_, &QPushButton::clicked, this, &MainWindow::ClickedSlot);
-    }
-    Coordinates get(){
+    MainWindow(QWidget *parent = nullptr);
+    void Move(std::vector<Coordinates> move);
+    void MoveTo(Coordinates c, Coordinates new_c, Color color);
+    void DeletePawn(Coordinates c, Color color);
+    void CreateButton(std::vector<std::vector<Figur*>>& figur, Coordinates coord);
+    static Coordinates get(){
         return buttonC;
     }
-    void set(){
+    static void set(){
         buttonC = {-1,-1};
     }
-    void move();
-
-    MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
-private slots:
+public slots:
     void ClickedSlot();
-
 private:
-    QWidget* wid ;
-    Coordinates buttonC = {-1,-1};
-    bool click = false;
-    Ui::MainWindow *ui;
+     QWidget* wid;
+     int tBlack = 0;
+     int tWhite = 0;
+     std::vector<QPushButton*> black;
+     std::vector<QPushButton*> white;
+     static inline Coordinates buttonC = {-1,-1};
+     static inline bool click = false;
+     Ui::MainWindow *ui;
 };
 #endif // MAINWINDOW_H

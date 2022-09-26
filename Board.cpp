@@ -1,8 +1,8 @@
-#include "Board.h"
-#include "Piece.h"
-
 #include <iostream>
 #include <QApplication>
+
+#include "Board.h"
+#include "Piece.h"
 
 Board::Board(MainWindow** w) {
 	piece_l.insert({ PieceName::Pawn, &Board::CreatePawn });
@@ -62,8 +62,9 @@ void Board::Move(Coordinates c, Coordinates new_c, MainWindow** w) {
                 p->set();
             }
         }
-        if (abs(c.x - new_c.x) == 1 && abs(c.y - new_c.y) == 1 && figur[c.x][new_c.y]->getP().name == PieceName::Pawn) {
-            if(figur[c.x][c.y + 1]->getP().color != figur[c.x][new_c.y]->getP().color){
+        if (abs(c.x - new_c.x) == 1 && abs(c.y - new_c.y) == 1 && figur[c.x][new_c.y]->getP().name == PieceName::Pawn && (&dynamic_cast<Pawn&>(*figur[c.x][new_c.y]))->get()) {
+            if(figur[c.x][new_c.y]->getP().color != figur[c.x][c.y]->getP().color){
+                (*w)->DeletePawn({ c.x,new_c.y }, figur[c.x][new_c.y]->getP().color);
                 delete figur[c.x][new_c.y];
                 (this->*piece_l[PieceName::None])({ c.x,new_c.y }, Color::None, w);
             }
@@ -76,12 +77,14 @@ void Board::Move(Coordinates c, Coordinates new_c, MainWindow** w) {
             (this->*piece_l[PieceName::Rook])({ c.x,c.y - 1 }, figur[c.x][c.y]->getP().color, w);
             delete figur[c.x][c.y - 3];
             (this->*piece_l[PieceName::None])({ c.x,c.y - 3 }, Color::None, w);
+            (*w)->MoveTo({ c.x,c.y - 3 }, { c.x,c.y - 1 }, Color::None);
         }
         else if (c.y - new_c.y == -2 && (&dynamic_cast<King&>(*figur[c.x][c.y]))->get() && (&dynamic_cast<Rook&>(*figur[c.x][c.y + 4]))->get()) {
             delete figur[c.x][c.y + 1];
             (this->*piece_l[PieceName::Rook])({ c.x,c.y + 1 }, figur[c.x][c.y]->getP().color, w);
             delete figur[c.x][c.y + 4];
             (this->*piece_l[PieceName::None])({ c.x,c.y + 4 }, Color::None, w);
+            (*w)->MoveTo({ c.x,c.y + 4 }, { c.x,c.y + 1 }, Color::None);
         }
         (&dynamic_cast<King&>(*figur[new_c.x][new_c.y]))->set();
         if (c.x == king_c[0].x) {
@@ -99,13 +102,14 @@ void Board::Move(Coordinates c, Coordinates new_c, MainWindow** w) {
 }
 
 void Board::Start(MainWindow** w) {
+//    QWidget* wid = (*w)->findChild<QWidget*>();
     while (!ChackMate()) {
-    //wid->show();
-        QApplication::sync();
+//    wid->show();
+        //QApplication::sync();
         Coordinates coord = (*w)->get();
         while(coord.x == -1){
-           QApplication::sync();
            coord = (*w)->get();
+           QApplication::sync();
         }
         (*w)->set();
 		if (coord.x < 8 && coord.x >= 0 && game_color == figur[coord.x][coord.y]->getP().color) {
@@ -116,29 +120,31 @@ void Board::Start(MainWindow** w) {
 				else {
 					move = figur[coord.x][coord.y]->WhereCanMove(figur, coord, king_c[1]);
 				}
-                for (size_t i = 0; i < move.size(); i++) {
+                for (int i = 0; i < (int)move.size(); i++) {
                     std::cout << move[i].x << move[i].y << std::endl;
                 }
-                //(*w)->ShowMoive(move);
-                Coordinates new_coord = {10,10};(*w)->get();
-                //std::cout << move[0].x << move[0].y << std::endl;
-//                while(new_coord.x == -1){
-//                    QApplication::sync();
-//                    new_coord = (*w)->get();
-//                }
-//                for (int i = 0; i < (int)move.size(); i++) {
-//                    if ((move[i].x == new_coord.x && move[i].y == new_coord.y)) {
-//                        Move(coord, new_coord, w);
-//                        (*w)->set();
-//                        if (game_color == Color::White) {
-//                            game_color = Color::Black;
-//                        }
-//                        else {
-//                            game_color = Color::White;
-//                        }
-//                        break;
-//                    }
-//                }
+                (*w)->Move(move);
+                Coordinates new_coord = (*w)->get();
+                while(new_coord.x == -1){
+                     QApplication::sync();
+                    new_coord = (*w)->get();
+                }
+                (*w)->Move(move);
+                for (int i = 0; i < (int)move.size(); i++) {
+                    if ((move[i].x == new_coord.x && move[i].y == new_coord.y)) {
+                        (*w)->MoveTo(coord, new_coord, figur[new_coord.x][new_coord.y]->getP().color);
+                        Move(coord, new_coord, w);
+                        (*w)->show();
+                        if (game_color == Color::White) {
+                            game_color = Color::Black;
+                        }
+                        else {
+                            game_color = Color::White;
+                        }
+                        break;
+                    }
+                }
+                (*w)->set();
 			}
         }
     }

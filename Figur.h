@@ -13,7 +13,6 @@ struct  Coordinates
     int y;
 };
 
-
 class Figur
 {
 public:
@@ -35,12 +34,21 @@ class Pawn : public Figur
 {
 public:
     Pawn(Color color) {
-		piece = { color, PieceName::Pawn };
+        piece = { color, PieceName::Pawn };
         if(color == Color::White){
             path = ":/image/Pawn1.png";
         }else{
            path = ":/image/Pawn.png";
         }
+//        QPushButton* button_ = new QPushButton(*w);
+//        button_->resize(50,50);
+//        button_->move(c.y*50, c.x*50);
+//        if(((c.x + c.y)%2) == 0){
+//            button_->setStyleSheet(QString("border: 0 ;background-color: rgb(0,0,0);"));
+//        }else{
+//            button_->setStyleSheet(QString("border: 0 ;background-color: rgb(255,255,255);"));
+//        }
+//        MainWindow::connect(button_, &QPushButton::clicked, *w, &MainWindow::ClickedSlot);
         p = false;
 	}
 	bool get() {
@@ -161,6 +169,7 @@ class None : public Figur
 {
 public:
     None() {
+        piece = { Color::None, PieceName::None };
         //path = ":/image/None.png";
 		//coord = { c.x,c.y };
 	}
