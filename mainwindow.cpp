@@ -1,11 +1,17 @@
 #include "mainwindow.h"
-#include "./ui_mainwindow.h"
+#include "ui_mainwindow.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    socket = new QTcpSocket(this);
+    socket->connectToHost(QHostAddress::LocalHost,8080);
+    connect(socket, &QTcpSocket::readyRead, this, &MainWindow::ReadSocket);
+//    if(!socket->waitForConnected()){
+//        exit(EXIT_FAILURE);
+//    }
     wid = new QWidget(this);
     wid->move(200,50);
     wid->resize(8 * 50, 8 * 50);
@@ -67,10 +73,40 @@ MainWindow::MainWindow(QWidget *parent)
     }
 }
 
+void MainWindow::ReadSocket(){
+    QDataStream socketStream(socket);
+    socketStream.setVersion(QDataStream::Qt_6_3);
+    socketStream.startTransaction();
+    if(first){
+        socketStream >> color;
+        qDebug() << color;
+        socketStream.abortTransaction();
+        first = false;
+        return;
+    }
+    if(buttonC.x == -1){
+        socketStream >> buttonC.x >> buttonC.y;
+        qDebug() << buttonC.x << buttonC.y;
+        socketStream.abortTransaction();
+    }
+}
+
 void MainWindow::ClickedSlot(){
     QPushButton* button = (QPushButton*)sender();
-    buttonC.x = (button->pos().y()) / 50;
-    buttonC.y = (button->pos().x()) / 50;
+    //buttonC.x = (button->pos().y()) / 50;
+    //buttonC.y = (button->pos().x()) / 50;
+    if(socket){
+        if(socket->isOpen())
+        {
+            QByteArray block;
+            QDataStream out(&block, QIODevice::WriteOnly);
+            out.setVersion(QDataStream::Qt_6_3);
+            if(color % 2 == 1){
+                out << (button->pos().y()) / 50 << (button->pos().x()) / 50;
+                socket->write(block);
+            }
+        }
+    }
 }
 
 void MainWindow::CreateButton(std::vector<std::vector<Figur*>>& figur, Coordinates coord){
@@ -89,12 +125,12 @@ void MainWindow::CreateButton(std::vector<std::vector<Figur*>>& figur, Coordinat
     connect(button, &QPushButton::clicked, this, &MainWindow::ClickedSlot);
 }
 
-void MainWindow::Move(std::vector<Coordinates> move){
+void MainWindow::CanMove(std::vector<Coordinates> move){
     QList<QPushButton*> pButton = wid->findChildren<QPushButton*>();
     for(auto k = pButton.begin(); k != pButton.end(); k++){
         for(int i = 0; i < (int)move.size(); i++){
             if(((*k)->y())/50 == move[i].x && ((*k)->x())/50 == move[i].y){
-                if(!click){
+                if(firstClick){
                     (*k)->setStyleSheet("border: 0; background-color: rgb(255,0,0);");
                 }else{
                     if(((move[i].x + move[i].y)%2) == 0){
@@ -106,7 +142,7 @@ void MainWindow::Move(std::vector<Coordinates> move){
             }
         }
     }
-    click = !click;
+    firstClick = !firstClick;
 }
 
 void MainWindow::MoveTo(Coordinates c, Coordinates new_c, Color color){
@@ -164,8 +200,10 @@ void MainWindow::DeletePawn(Coordinates c, Color color){
     }
 }
 
-MainWindow::~MainWindow()
-{
+MainWindow::~MainWindow(){
+    if(socket->isOpen()){
+        socket->close();
+    }
     delete ui;
 }
 

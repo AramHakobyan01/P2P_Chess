@@ -7,8 +7,8 @@ int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
     MainWindow* w = new MainWindow;
-    Board b(&w);
+    Board b(w);
     w->show();
-    b.Start(&w);
+    b.Start(w);
     return a.exec();
 }

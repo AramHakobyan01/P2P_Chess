@@ -5,6 +5,7 @@
 #include <QPixmap>
 #include <QIcon>
 #include <QPushButton>
+#include <QTcpSocket>
 
 #include "Figur.h"
 #include "Piece.h"
@@ -18,28 +19,32 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 
 public:
+    int color = 5;
     MainWindow(QWidget *parent = nullptr);
-    void Move(std::vector<Coordinates> move);
+    void CanMove(std::vector<Coordinates> move);
     void MoveTo(Coordinates c, Coordinates new_c, Color color);
     void DeletePawn(Coordinates c, Color color);
     void CreateButton(std::vector<std::vector<Figur*>>& figur, Coordinates coord);
-    static Coordinates get(){
+    Coordinates get(){
         return buttonC;
     }
-    static void set(){
+    void set(){
         buttonC = {-1,-1};
     }
     ~MainWindow();
 public slots:
+    void ReadSocket();
     void ClickedSlot();
 private:
-     QWidget* wid;
-     int tBlack = 0;
-     int tWhite = 0;
-     std::vector<QPushButton*> black;
-     std::vector<QPushButton*> white;
-     static inline Coordinates buttonC = {-1,-1};
-     static inline bool click = false;
-     Ui::MainWindow *ui;
+    QTcpSocket* socket;
+    QWidget* wid;
+    int tBlack = 0;
+    int tWhite = 0;
+    std::vector<QPushButton*> black;
+    std::vector<QPushButton*> white;
+    Coordinates buttonC = {-1,-1};
+    bool firstClick = true;
+    bool first = true;
+    Ui::MainWindow *ui;
 };
 #endif // MAINWINDOW_H

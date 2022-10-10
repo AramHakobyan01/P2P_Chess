@@ -208,69 +208,69 @@ bool Figur::AreChacking(std::vector<std::vector<Figur*>>& figur, Coordinates c, 
 		return true;
 	}
 }
-void Board::CreatePawn(Coordinates c, Color color, MainWindow** w) {
+void Board::CreatePawn(Coordinates c, Color color, MainWindow* w) {
 	if (figur[c.x].size() < 8) {
         figur[c.x].push_back(new Pawn(color));
-        (*w)->CreateButton(figur,c);
+        w->CreateButton(figur,c);
 	}
 	else {
         figur[c.x][c.y] = new Pawn(color);
 	}
 }
 
-void Board::CreateKnight(Coordinates c, Color color, MainWindow** w) {
+void Board::CreateKnight(Coordinates c, Color color, MainWindow* w) {
 	if (figur[c.x].size() < 8) {
         figur[c.x].push_back(new Knight(color));
-        (*w)->CreateButton(figur, c);
+        w->CreateButton(figur, c);
 	}
 	else {
         figur[c.x][c.y] = new Knight(color);
 	}
 }
 
-void Board::CreateBishop(Coordinates c, Color color, MainWindow** w) {
+void Board::CreateBishop(Coordinates c, Color color, MainWindow* w) {
 	if (figur[c.x].size() < 8) {
         figur[c.x].push_back(new Bishop(color));
-        (*w)->CreateButton(figur, c);
+        w->CreateButton(figur, c);
     }
 	else {
         figur[c.x][c.y] = new Bishop(color);
 	}
 }
 
-void Board::CreateRook(Coordinates c, Color color, MainWindow** w) {
+void Board::CreateRook(Coordinates c, Color color, MainWindow* w) {
 	if (figur[c.x].size() < 8) {
         figur[c.x].push_back(new Rook(color));
-        (*w)->CreateButton(figur, c);
+        w->CreateButton(figur, c);
 	}
 	else {
         figur[c.x][c.y] = new Rook(color);
 	}
 }
 
-void Board::CreateKing(Coordinates c, Color color, MainWindow** w) {
+void Board::CreateKing(Coordinates c, Color color, MainWindow* w) {
 	if (figur[c.x].size() < 8) {
         figur[c.x].push_back(new King(color));
-        (*w)->CreateButton(figur, c);
+        w->CreateButton(figur, c);
     }
 	else {
         figur[c.x][c.y] = new King(color);
 	}
 }
-void Board::CreateQueen(Coordinates c, Color color, MainWindow** w) {
+void Board::CreateQueen(Coordinates c, Color color, MainWindow* w) {
 	if (figur[c.x].size() < 8) {
         figur[c.x].push_back(new Queen(color));
-       (*w)->CreateButton(figur, c);
+       w->CreateButton(figur, c);
 	}
 	else {
         figur[c.x][c.y] = new Queen(color);
 	}
 }
 
-void Board::CreateNone(Coordinates c, Color color, MainWindow** w) {
+void Board::CreateNone(Coordinates c, Color color, MainWindow* w) {
 	if (figur[c.x].size() < 8) {
         figur[c.x].push_back(new None());
-        (*w)->CreateButton(figur, c);
+        w->CreateButton(figur, c);
 	}
 	else {
         figur[c.x][c.y] = new None();
