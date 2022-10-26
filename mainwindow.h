@@ -1,11 +1,17 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
+#define PAUSE -1
+
 #include <QMainWindow>
 #include <QPixmap>
 #include <QIcon>
 #include <QPushButton>
 #include <QTcpSocket>
+#include <QMessageBox>
+#include <QGridLayout>
+#include <QLabel>
+#include <QTime>
 
 #include "Figur.h"
 #include "Piece.h"
@@ -19,32 +25,41 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 
 public:
-    int color = 5;
     MainWindow(QWidget *parent = nullptr);
-    void CanMove(std::vector<Coordinates> move);
-    void MoveTo(Coordinates c, Coordinates new_c, Color color);
-    void DeletePawn(Coordinates c, Color color);
-    void CreateButton(std::vector<std::vector<Figur*>>& figur, Coordinates coord);
-    Coordinates get(){
-        return buttonC;
-    }
-    void set(){
-        buttonC = {-1,-1};
-    }
     ~MainWindow();
 public slots:
-    void ReadSocket();
+    void WindowTimer();
+    void ChangePawnClick();
     void ClickedSlot();
+    virtual void ReadSocket() = 0;
 private:
-    QTcpSocket* socket;
-    QWidget* wid;
     int tBlack = 0;
     int tWhite = 0;
+    QTimer* timer;
+    QTime* blackTime;
+    QTime* whiteTime;
+    QLabel* whiteTimeLabel;
+    QLabel* blackTimeLabel;
     std::vector<QPushButton*> black;
     std::vector<QPushButton*> white;
-    Coordinates buttonC = {-1,-1};
-    bool firstClick = true;
-    bool first = true;
     Ui::MainWindow *ui;
+protected:
+    int temp;
+    int rev;
+    bool first;
+    bool firstClick;
+    Coordinates prev_buttonCoord;
+    Coordinates buttonCoord;
+    QWidget* wid;
+    QWidget* startWid;
+    QTcpSocket* socket;    
+protected:
+    void CreateButton(std::vector<std::vector<Figur*>>& figur, Coordinates coord);
+    void CanMove(std::vector<Coordinates> move, Coordinates clickButton);
+    void MoveTo(Coordinates c, Coordinates new_c, Color color);
+    void ChangePawn(Coordinates c, Color color);
+    void DeletePawn(Coordinates c, Color color);
+    void AddWindowStyle();
+    void GameOver();
 };
 #endif // MAINWINDOW_H

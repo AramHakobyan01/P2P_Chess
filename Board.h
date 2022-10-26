@@ -8,33 +8,33 @@
 #include "Figur.h"
 #include "mainwindow.h"
 
-class Board
+class Board : MainWindow
 {
 public:
-    Board(){}
-    Board(MainWindow* w);
-    void Move(Coordinates c, Coordinates new_c, MainWindow* w);
-    void Start(MainWindow* w);
-    void Continue(Coordinates coord, Coordinates new_coord);
-    std::vector<Coordinates> get(){
-        return move;
-    }
-    //~Board() {};
+    Board();
+    ~Board() = default;
+private slots:
+    void ReadSocket() override;
 private:
-    QTcpSocket* socket;
     std::vector<Coordinates> move;
-    std::unordered_map<PieceName, void (Board::*)(Coordinates c, Color color, MainWindow* w)> piece_l;
+    std::unordered_map<PieceName, void (Board::*)(Coordinates c, Color color)> piece_l;
     std::vector<std::vector<Figur*>> figur{ 8 };
-    Color game_color = Color::White;
+    Color game_color;
 	Coordinates king_c[2];
-    void CreatePawn(Coordinates c, Color color, MainWindow* w);
-    void CreateKnight(Coordinates c, Color color, MainWindow* w);
-    void CreateBishop(Coordinates c, Color color, MainWindow* w);
-    void CreateRook(Coordinates c, Color color, MainWindow* w);
-    void CreateKing(Coordinates c, Color color, MainWindow* w);
-    void CreateQueen(Coordinates c, Color color, MainWindow* w);
-    void CreateNone(Coordinates c, Color color, MainWindow* w);
+private:
+    void Move(Coordinates c, Coordinates new_c);
+    void Start(Coordinates coord);
+    void Continue(Coordinates coord, Coordinates new_coord);
+    void CreatePawn(Coordinates c, Color color);
+    void CreateKnight(Coordinates c, Color color);
+    void CreateBishop(Coordinates c, Color color);
+    void CreateRook(Coordinates c, Color color);
+    void CreateKing(Coordinates c, Color color);
+    void CreateQueen(Coordinates c, Color color);
+    void CreateNone(Coordinates c, Color);
+    void ChangeFigur(Coordinates widget, int name);
 	bool ChackMate();
+    void CreateFigur();
 	
 };
 #endif //BOARD

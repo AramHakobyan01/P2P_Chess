@@ -13,5 +13,6 @@
         <file>image/Queen1.png</file>
         <file>image/Rook.png</file>
         <file>image/Rook1.png</file>
+        <file>image/ket.png</file>
     </qresource>
 </RCC>

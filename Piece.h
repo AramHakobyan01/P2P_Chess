@@ -3,26 +3,26 @@
 
 enum class PieceName
 {
-	None = 0,
-	Pawn,
-	Knight,
-	Bishop,
-	Rook,
-	Queen,
-	King
+    None = 0,
+    Pawn,
+    Knight,
+    Bishop,
+    Rook,
+    Queen,
+    King
 };
 
 enum class Color
 {
-	None = 0,
-	White,
-	Black
+    None = 0,
+    White,
+    Black
 };
 
 
 struct Piece
 {
-	Color color;
-	PieceName name;
+    Color color;
+    PieceName name;
 };
 #endif //PIECE
