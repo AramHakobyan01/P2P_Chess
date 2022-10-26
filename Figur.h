@@ -24,6 +24,12 @@ protected:
     QString path;
     Piece piece;
     bool AreChacking(std::vector<std::vector<Figur*>>& figur, Coordinates c, Coordinates new_c, Coordinates king_c);
+private:
+    bool ArePawnChacking(std::vector<std::vector<Figur*>>& figur, Coordinates c, Coordinates new_c, Coordinates king_c);
+    bool AreKnightChacking(std::vector<std::vector<Figur*>>& figur, Coordinates c, Coordinates new_c, Coordinates king_c);
+    bool AreBishopChacking(std::vector<std::vector<Figur*>>& figur, Coordinates c, Coordinates new_c, Coordinates king_c);
+    bool AreRookChacking(std::vector<std::vector<Figur*>>& figur, Coordinates c, Coordinates new_c, Coordinates king_c);
+    bool AreKingChacking(std::vector<std::vector<Figur*>>& figur, Coordinates c, Coordinates new_c, Coordinates king_c);
 };
 
 class Pawn : public Figur
@@ -82,11 +88,6 @@ public:
     King(Color color);
     bool Get();
     void Set();
-    bool ArePawnChacking(std::vector<std::vector<Figur*>>& figur, Coordinates new_c, Coordinates king_c);
-    bool AreKnightChacking(std::vector<std::vector<Figur*>>& figur, Coordinates new_c, Coordinates king_c);
-    bool AreBishopChacking(std::vector<std::vector<Figur*>>& figur, Coordinates c, Coordinates new_c, Coordinates king_c);
-    bool AreRookChacking(std::vector<std::vector<Figur*>>& figur, Coordinates c, Coordinates new_c, Coordinates king_c);
-    bool AreKingChacking(std::vector<std::vector<Figur*>>& figur, Coordinates new_c, Coordinates king_c);
     std::vector<Coordinates> WhereCanMove(std::vector<std::vector<Figur*>>& figur, Coordinates c, Coordinates) override;
     virtual ~King() = default;
 private:

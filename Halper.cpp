@@ -4,70 +4,78 @@
 #include "Board.h"
 #include "mainwindow.h"
 
-bool King::AreRookChacking(std::vector<std::vector<Figur*>>& figur, Coordinates c, Coordinates new_c, Coordinates king_c) {
+bool Figur::AreRookChacking(std::vector<std::vector<Figur*>>& figur, Coordinates c, Coordinates new_c, Coordinates king_c) {
     int count = 0;
-    Color color = GetPiece().color;
+    Color color = figur[c.x][c.y]->GetPiece().color;
     for (int i = king_c.x + 1, j = king_c.y; i < 8; i++) {
         if (i == c.x && j == c.y) {
             continue;
-        } else if (i == new_c.x && j == new_c.y) {
+        }
+        else if (i == new_c.x && j == new_c.y) {
             break;
         }
         if (figur[i][j]->GetPiece().color != color) {
             if (figur[i][j]->GetPiece().name == PieceName::Queen || figur[i][j]->GetPiece().name == PieceName::Rook) {
                 count++;
                 break;
+            }else if(figur[i][j]->GetPiece().name != PieceName::None){
+                break;
             }
-        }
-        if(figur[i][j]->GetPiece().color == color || figur[i][j]->GetPiece().name != PieceName::None) {
+        }else if(figur[i][j]->GetPiece().color == color) {
             break;
         }
     }
     for (int i = king_c.x - 1, j = king_c.y; i >= 0; i--) {
         if (i == c.x && j == c.y) {
             continue;
-        } else if (i == new_c.x && j == new_c.y) {
+        }
+        else if (i == new_c.x && j == new_c.y) {
             break;
         }
         if (figur[i][j]->GetPiece().color != color) {
             if (figur[i][j]->GetPiece().name == PieceName::Queen || figur[i][j]->GetPiece().name == PieceName::Rook) {
                 count++;
                 break;
+            }else if(figur[i][j]->GetPiece().name != PieceName::None){
+                break;
             }
-        }
-        if(figur[i][j]->GetPiece().color == color || figur[i][j]->GetPiece().name != PieceName::None) {
+        }else if(figur[i][j]->GetPiece().color == color) {
             break;
         }
     }
     for (int i = king_c.x, j = king_c.y + 1; j < 8; j++) {
         if (i == c.x && j == c.y) {
             continue;
-        } else if (i == new_c.x && j == new_c.y) {
+        }
+        else if (i == new_c.x && j == new_c.y) {
             break;
         }
         if (figur[i][j]->GetPiece().color != color) {
             if (figur[i][j]->GetPiece().name == PieceName::Queen || figur[i][j]->GetPiece().name == PieceName::Rook) {
                 count++;
                 break;
+            }else if(figur[i][j]->GetPiece().name != PieceName::None){
+                break;
             }
-        }
-        if (figur[i][j]->GetPiece().color == color || figur[i][j]->GetPiece().name != PieceName::None) {
+        }else if(figur[i][j]->GetPiece().color == color) {
             break;
         }
     }
     for (int i = king_c.x, j = king_c.y - 1; j >= 0; j--) {
         if (i == c.x && j == c.y) {
             continue;
-        } else if (i == new_c.x && j == new_c.y) {
+        }
+        else if (i == new_c.x && j == new_c.y) {
             break;
         }
         if (figur[i][j]->GetPiece().color != color) {
             if (figur[i][j]->GetPiece().name == PieceName::Queen || figur[i][j]->GetPiece().name == PieceName::Rook) {
                 count++;
                 break;
+            }else if(figur[i][j]->GetPiece().name != PieceName::None){
+                break;
             }
-        }
-        if (figur[i][j]->GetPiece().color == color || figur[i][j]->GetPiece().name != PieceName::None) {
+        }else if(figur[i][j]->GetPiece().color == color) {
             break;
         }
 
@@ -79,9 +87,9 @@ bool King::AreRookChacking(std::vector<std::vector<Figur*>>& figur, Coordinates 
     }
 }
 
-bool King::AreBishopChacking(std::vector<std::vector<Figur*>>& figur, Coordinates c, Coordinates new_c, Coordinates king_c) {
+bool Figur::AreBishopChacking(std::vector<std::vector<Figur*>>& figur, Coordinates c, Coordinates new_c, Coordinates king_c) {
     int count = 0;
-    Color color = GetPiece().color;
+    Color color = figur[c.x][c.y]->GetPiece().color;
     for (int i = king_c.x + 1, j = king_c.y + 1; j < 8 && i < 8; j++, i++) {
         if (i == c.x && j == c.y) {
             continue;
@@ -153,9 +161,9 @@ bool King::AreBishopChacking(std::vector<std::vector<Figur*>>& figur, Coordinate
     }
 }
 
-bool King::AreKnightChacking(std::vector<std::vector<Figur*>>& figur, Coordinates new_c, Coordinates king_c) {
+bool Figur::AreKnightChacking(std::vector<std::vector<Figur*>>& figur, Coordinates c, Coordinates new_c, Coordinates king_c) {
     int count = 0;
-    Color color = GetPiece().color;
+    Color color = figur[c.x][c.y]->GetPiece().color;
     if (king_c.x + 1 < 8 && king_c.y + 2 < 8 && figur[king_c.x + 1][king_c.y + 2]->GetPiece().color != color && figur[king_c.x + 1][king_c.y + 2]->GetPiece().name == PieceName::Knight) {
         if (!(new_c.x == king_c.x + 1 && new_c.y == king_c.y + 2))  {
             count++;
@@ -204,9 +212,9 @@ bool King::AreKnightChacking(std::vector<std::vector<Figur*>>& figur, Coordinate
     }
 }
 
-bool King::ArePawnChacking(std::vector<std::vector<Figur*>>& figur, Coordinates new_c, Coordinates king_c) {
+bool Figur::ArePawnChacking(std::vector<std::vector<Figur*>>& figur, Coordinates c, Coordinates new_c, Coordinates king_c) {
     int count = 0;
-    Color color = GetPiece().color;
+    Color color = figur[c.x][c.y]->GetPiece().color;
     if (color == Color::White) {
         if (king_c.x + 1 < 8 && king_c.y + 1 < 8 && figur[king_c.x + 1][king_c.y + 1]->GetPiece().color != color && figur[king_c.x + 1][king_c.y + 1]->GetPiece().name == PieceName::Pawn) {
             if (!(new_c.x == king_c.x + 1 && new_c.y == king_c.y + 1)) {
@@ -238,9 +246,9 @@ bool King::ArePawnChacking(std::vector<std::vector<Figur*>>& figur, Coordinates 
     }
 }
 
-bool King::AreKingChacking(std::vector<std::vector<Figur*>>& figur, Coordinates new_c, Coordinates king_c) {
+bool Figur::AreKingChacking(std::vector<std::vector<Figur*>>& figur, Coordinates c, Coordinates new_c, Coordinates king_c) {
     int count = 0;
-    Color color = GetPiece().color;
+    Color color = figur[c.x][c.y]->GetPiece().color;
     if (king_c.x + 1 < 8 && king_c.y + 1 < 8 && figur[king_c.x + 1][king_c.y + 1]->GetPiece().color != color && figur[king_c.x + 1][king_c.y + 1]->GetPiece().name == PieceName::King) {
         if (!(new_c.x == king_c.x + 1 && new_c.y == king_c.y + 1)) {
             count++;
@@ -291,19 +299,19 @@ bool King::AreKingChacking(std::vector<std::vector<Figur*>>& figur, Coordinates 
 }
 
 bool Figur::AreChacking(std::vector<std::vector<Figur*>>& figur, Coordinates c, Coordinates new_c, Coordinates king_c) {
-    if (reinterpret_cast<King&>(*figur[king_c.x][king_c.y]).AreRookChacking(figur, c, new_c, king_c)) {
+    if (AreRookChacking(figur, c, new_c, king_c)) {
         return true;
     }
-    if (reinterpret_cast<King&>(*figur[king_c.x][king_c.y]).AreBishopChacking(figur, c, new_c, king_c)) {
+    if (AreBishopChacking(figur, c, new_c, king_c)) {
         return true;
     }
-    if (reinterpret_cast<King&>(*figur[king_c.x][king_c.y]).AreKnightChacking(figur, new_c, king_c)) {
+    if (AreKnightChacking(figur, c, new_c, king_c)) {
         return true;
     }
-    if (reinterpret_cast<King&>(*figur[king_c.x][king_c.y]).ArePawnChacking(figur, new_c, king_c)) {
+    if (ArePawnChacking(figur, c, new_c, king_c)) {
         return true;
     }
-    if (reinterpret_cast<King&>(*figur[king_c.x][king_c.y]).AreKingChacking(figur, new_c, king_c)) {
+    if (AreKingChacking(figur, c, new_c, king_c)) {
         return true;
     }
     return false;
