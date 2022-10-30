@@ -233,6 +233,8 @@ std::vector<Coordinates> Bishop::WhereCanMove(std::vector<std::vector<Figur*>>& 
                 } else {
                     bishopMove.push_back({ i,j });
                 }
+            } else if (figur[i][j]->GetPiece().color != Color::None) {
+                break;
             }
         } else {
             break;
@@ -247,6 +249,8 @@ std::vector<Coordinates> Bishop::WhereCanMove(std::vector<std::vector<Figur*>>& 
                 } else {
                     bishopMove.push_back({ i,j });
                 }
+            } else if (figur[i][j]->GetPiece().color != Color::None) {
+                break;
             }
         } else {
             break;
@@ -261,6 +265,8 @@ std::vector<Coordinates> Bishop::WhereCanMove(std::vector<std::vector<Figur*>>& 
                 } else {
                     bishopMove.push_back({ i,j });
                 }
+            } else if (figur[i][j]->GetPiece().color != Color::None) {
+                break;
             }
         } else {
             break;
@@ -275,6 +281,8 @@ std::vector<Coordinates> Bishop::WhereCanMove(std::vector<std::vector<Figur*>>& 
                 } else {
                     bishopMove.push_back({ i,j });
                 }
+            } else if (figur[i][j]->GetPiece().color != Color::None) {
+                break;
             }
         } else {
             break;
@@ -294,6 +302,8 @@ std::vector<Coordinates> Rook::WhereCanMove(std::vector<std::vector<Figur*>>& fi
                 } else {
                     rookMove.push_back({ i,j });
                 }
+            } else if (figur[i][j]->GetPiece().color != Color::None) {
+                break;
             }
         } else {
             break;
@@ -308,6 +318,8 @@ std::vector<Coordinates> Rook::WhereCanMove(std::vector<std::vector<Figur*>>& fi
                 } else {
                     rookMove.push_back({ i,j });
                 }
+            } else if (figur[i][j]->GetPiece().color != Color::None) {
+                break;
             }
         } else {
             break;
@@ -322,6 +334,8 @@ std::vector<Coordinates> Rook::WhereCanMove(std::vector<std::vector<Figur*>>& fi
                 } else {
                     rookMove.push_back({ i,j });
                 }
+            } else if (figur[i][j]->GetPiece().color != Color::None) {
+                break;
             }
         } else {
             break;
@@ -336,6 +350,8 @@ std::vector<Coordinates> Rook::WhereCanMove(std::vector<std::vector<Figur*>>& fi
                 } else {
                     rookMove.push_back({ i,j });
                 }
+            } else if (figur[i][j]->GetPiece().color != Color::None) {
+                break;
             }
         } else {
             break;
