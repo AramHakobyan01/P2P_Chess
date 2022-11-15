@@ -7,7 +7,7 @@ During the development it was used:
   • QT 6  
   • C++ 17
   
-[Chess_Structure_UML vpd](https://user-images.githubusercontent.com/104615049/201945353-7bc7eddd-2add-4aaa-be37-769e05b90c70.png)
+  ![Chess_Structure_UML vpd](https://user-images.githubusercontent.com/104615049/201946751-333e157b-5aa5-4bb1-8357-40f0bb93e6dd.png)
 
 ## Chess Board Description
 
