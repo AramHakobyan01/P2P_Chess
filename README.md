@@ -6,10 +6,14 @@ The project is a P2P chess that supports multiplayer mode.
 During the development it was used:  
   • QT 6  
   • C++ 17
+  
+    ![Alt text](https://s127vlx.storage.yandex.net/rdisk/462c9bb5b06c249b5a67c474b6335d1e8bdec0cdeb18e721061d9d35fb5a1174/6373d5e4/RQZ7fmHkyJ6IWJG0cs2ZYiC1um0jY_2w_XhqkVLoLOoI4IaN7jKP95ozschr6BM81G2UCbvYf5I5-fZlhO6HaA==?uid=733159442&filename=uml.jpg&disposition=inline&hash=&limit=0&content_type=image%2Fjpeg&owner_uid=733159442&fsize=95543&hid=66ce88fee3c85978884d0d0fdeb33263&media_type=image&tknv=v2&etag=b315584f4b6d520ee62e944d318a8333&rtoken=C0ocRrNGwynP&force_default=yes&ycrid=na-7c34da01b58422f4b6a0e497a1ad9a5d-downloader19e&ts=5ed8642764100&s=31361bd008af2b83a23f1bb67f8f18ccb91e4bd01831e525b50160bbe44a91a7&pb=U2FsdGVkX1-PTpkOUmGk7qzni_4sKi9SgYxqCZ1LEbXPfohZeENJqdVT8HVvun8nTH_xzLAH1P1XRmYC4fLYvfW-N3yXDsUKNr7vJGeeb9s "Board")
 
 ## Chess Board Description
 
 Chess is played by two players on a chess board measuring eight-by-eight squares. The 64 squares alternate between light and dark colours - traditionally, black and white. When properly set up, a white square should be the rightmost square along the edge closest to each player.  
+  
+  ![Alt text](https://s54vlx.storage.yandex.net/rdisk/2b5feffabb448fbf324f4f684f54e8d61e49eff130a36f92daaf6cf80b4f4e6c/6373d22a/RQZ7fmHkyJ6IWJG0cs2ZYqMnLCC7GnY1huvdSY3PdZA6goQxezztzod6Ko3D0w6fDM3q46TH-ihc0kxh-ILiPg==?uid=733159442&filename=2022-11-15%2017.41.50.jpg&disposition=inline&hash=&limit=0&content_type=image%2Fjpeg&owner_uid=733159442&fsize=49678&hid=1db3819c42a8b3ec1c8dbc9638f99d22&media_type=image&tknv=v2&etag=b2a31cc095e4b95594ba0bbde3f4bfff&rtoken=W00Rd4cUQOJa&force_default=yes&ycrid=na-f88b3a54c4ee189416e415658854a8d1-downloader11e&ts=5ed8609995e80&s=7d948518516644c57fdf289d64665c1441f2a48771667e8c002fa598023e3131&pb=U2FsdGVkX1-HuV0PkFPzu9-vL19bzhW78NAZmCyIDN2OqbxiyES3YqEZpNdujuS7sR1d3uzr2l-vkCc-8EJaGVYDYzpxhppxS8ZOWz0PaRQ "Board")
   
 Players’ pieces are set up in the two horizontal rows (known as ranks) closest to each player. The second rank - ie. the second row from the player’s perspective - consists of a line of eight pawns, each placed on a single square.
   
@@ -21,6 +25,8 @@ The white player takes the first move, with players alternating single turns unt
 ## Basic Chess Rules
 
 In chess, each player takes turns to make a single move. Players cannot choose to skip a turn - they must move a piece. Each chess piece moves in a specific way, and must be moved according to its legal movement.
+
+![Alt text](https://s06vlx.storage.yandex.net/rdisk/8f8640afbb15e949be4b19486659f104f96252a505288f40cf32147a326dd1e0/6373d221/RQZ7fmHkyJ6IWJG0cs2ZYmmxqMPq8m2nvz8qsPSw37uOgwammoC-2haHUhydmTRW3Owd_b6TYyfF7xCN1CwClg==?uid=733159442&filename=2022-11-15%2017.41.44.jpg&disposition=inline&hash=&limit=0&content_type=image%2Fjpeg&owner_uid=733159442&fsize=49711&hid=59408cb3d45bff1563c24818c34ea65d&media_type=image&tknv=v2&etag=67e639b8b8ea97d34fbc88bf588a867c&rtoken=gNSfpTcevSwo&force_default=yes&ycrid=na-453d3022c0595af5238f0b95697ab3a1-downloader11e&ts=5ed8609100a40&s=287fac9cfd5bf2f683aa81b3d971bf95fa14b3b523ecbda3426d9f9507545324&pb=U2FsdGVkX1-yZMCtYiIEl20iwi90jFpGBmP9Xwf2e1e6yYl70PAKSeFjyxikfnELKRtK1Q3RzsSn_IuoBuZ9_q9ccCENNAcHiFJoeCyK53Q "Move")
 
 Except for the knight, which may jump over pieces, pieces cannot move through pieces of either colour without either stopping (in the same of a piece of the same colour) or capturing them (in the case of a piece of the opposite colour).
 
@@ -71,7 +77,7 @@ The player placed into check must move their king or move another piece to stop 
 
 If a player creates a situation where their opponent cannot stop their king from being captured on the next turn, the attacking player announces “checkmate” and immediately wins the game. The king is never captured - a game of chess is won when a successful checkmate is announced.
 
-
+![Alt text](https://s185vlx.storage.yandex.net/rdisk/49ddf696e719c6f2e5434e9d022f5a69ffe840d72ac8726f7bfb63dda2fa1da6/6373cfcb/RQZ7fmHkyJ6IWJG0cs2ZYlUvGXvwcSatcYOo0_EYHRLyK1NwAFcy-FbKL73p2o0O4Y5gXiJwLJTteLgc7PwDUg==?uid=733159442&filename=2022-11-15%2017.41.27.jpg&disposition=inline&hash=&limit=0&content_type=image%2Fjpeg&owner_uid=733159442&fsize=50651&hid=17fa3fcd6740fe051f85beb634c7c2d7&media_type=image&tknv=v2&etag=ad3054237ceecfc79f42c7eb051158b6&rtoken=vv9biSprTSoK&force_default=yes&ycrid=na-2fb74f7d298445768b30ce8142322a81-downloader7f&ts=5ed85e56b48c0&s=9fe29791e4c0b29e71b4795383d36997ccb292fa62b4b0fda8ec089a3c9b6d2e&pb=U2FsdGVkX1_4bwwbb65TKPzVtpKbzcp210klevquretbFU-83pbiFnBMDlXhiRBEYfWfHLBWQR-4azNR8tGANAzEFS4ecHCAXvHCgO-lmJg "Win")
 
 A player can also choose to resign, granting their opponent the victory. Matches can also end in an agreed draw - for example, as the result of stalemate leaving a player without any legal moves, or if no player can win using available legal moves, a situation known as a “dead position”. One example of a dead position is when both players are left with their king as their only remaining piece on the board.
 
@@ -130,6 +136,8 @@ At the end of the game with any outcome, the players will see a screen informing
 When you turn on the program, a game room is created, to which the next connecting player is automatically added.
 
 After connecting, the first player sees a waiting screen.
+
+![Alt text](https://s824sas.storage.yandex.net/rdisk/202cfef71bea70cdef753c5e12b04b248e6f462061cfa1c68635e715d2014b5b/6373d215/RQZ7fmHkyJ6IWJG0cs2ZYos05agDiWqjX3hxQ10VUZ_rJe3KGmf6et8vZ0csDZU6QOR5sze4CemOtqEAs9yIOg==?uid=733159442&filename=2022-11-15%2017.41.32.jpg&disposition=inline&hash=&limit=0&content_type=image%2Fjpeg&owner_uid=733159442&fsize=50398&hid=23a70405fdf52cc81b9bedfcd54a7b48&media_type=image&tknv=v2&etag=a90534e385d6e71afb379f97452313b4&rtoken=ZQODRIG86z5W&force_default=yes&ycrid=na-f9bfcc38509586c69e8f3dd002868bf7-downloader11e&ts=5ed860858ef40&s=9dee9c6c58e53e6468203006371341cc0a742ad7f540c88c3e5c5d694f5ce607&pb=U2FsdGVkX18HqECmypf5bW8uBhuGg4Yo3lDQIjQGGD63mjgMnYFbRS926fRm3Z790HuegTZDo5Bz8hrAwZO6Fh_cITEM_3dxC3HQP6kBLv4 "Wait for connection")
 
 The move is transmitted sequentially, depending on whether you have connected to an existing room or a new one has been created for you. This simulates the randomness of the color selection.
 
