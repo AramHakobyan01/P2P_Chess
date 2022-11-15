@@ -5,9 +5,10 @@ The project is a P2P chess that supports multiplayer mode.
 
 During the development it was used:  
   • QT 6  
-  • C++ 17
+  • C++ 17 
   
-    ![Alt text](https://s127vlx.storage.yandex.net/rdisk/462c9bb5b06c249b5a67c474b6335d1e8bdec0cdeb18e721061d9d35fb5a1174/6373d5e4/RQZ7fmHkyJ6IWJG0cs2ZYiC1um0jY_2w_XhqkVLoLOoI4IaN7jKP95ozschr6BM81G2UCbvYf5I5-fZlhO6HaA==?uid=733159442&filename=uml.jpg&disposition=inline&hash=&limit=0&content_type=image%2Fjpeg&owner_uid=733159442&fsize=95543&hid=66ce88fee3c85978884d0d0fdeb33263&media_type=image&tknv=v2&etag=b315584f4b6d520ee62e944d318a8333&rtoken=C0ocRrNGwynP&force_default=yes&ycrid=na-7c34da01b58422f4b6a0e497a1ad9a5d-downloader19e&ts=5ed8642764100&s=31361bd008af2b83a23f1bb67f8f18ccb91e4bd01831e525b50160bbe44a91a7&pb=U2FsdGVkX1-PTpkOUmGk7qzni_4sKi9SgYxqCZ1LEbXPfohZeENJqdVT8HVvun8nTH_xzLAH1P1XRmYC4fLYvfW-N3yXDsUKNr7vJGeeb9s "Board")
+  file:///home/aramhakobyan/Desktop/chess/p2p_chess/Chess_Structure_UML.vpd.png
+  
 
 ## Chess Board Description
 
