@@ -7,8 +7,8 @@ During the development it was used:
   • QT 6  
   • C++ 17 
   
-  file:///home/aramhakobyan/Desktop/chess/p2p_chess/Chess_Structure_UML.vpd.png
-  
+  ![Chess Structure](https://user-images.githubusercontent.com/104615049/201945083-1443cf71-d96e-43a0-b1a2-571ad1b752e3.png)
+
 
 ## Chess Board Description
 
