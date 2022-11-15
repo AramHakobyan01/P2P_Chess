@@ -5,10 +5,9 @@ The project is a P2P chess that supports multiplayer mode.
 
 During the development it was used:  
   • QT 6  
-  • C++ 17 
+  • C++ 17
   
-  ![Chess Structure](https://user-images.githubusercontent.com/104615049/201945083-1443cf71-d96e-43a0-b1a2-571ad1b752e3.png)
-
+[Chess_Structure_UML vpd](https://user-images.githubusercontent.com/104615049/201945353-7bc7eddd-2add-4aaa-be37-769e05b90c70.png)
 
 ## Chess Board Description
 
