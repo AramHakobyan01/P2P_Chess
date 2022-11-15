@@ -13,7 +13,7 @@ During the development it was used:
 
 Chess is played by two players on a chess board measuring eight-by-eight squares. The 64 squares alternate between light and dark colours - traditionally, black and white. When properly set up, a white square should be the rightmost square along the edge closest to each player.  
   
-  ![Alt text](https://s54vlx.storage.yandex.net/rdisk/2b5feffabb448fbf324f4f684f54e8d61e49eff130a36f92daaf6cf80b4f4e6c/6373d22a/RQZ7fmHkyJ6IWJG0cs2ZYqMnLCC7GnY1huvdSY3PdZA6goQxezztzod6Ko3D0w6fDM3q46TH-ihc0kxh-ILiPg==?uid=733159442&filename=2022-11-15%2017.41.50.jpg&disposition=inline&hash=&limit=0&content_type=image%2Fjpeg&owner_uid=733159442&fsize=49678&hid=1db3819c42a8b3ec1c8dbc9638f99d22&media_type=image&tknv=v2&etag=b2a31cc095e4b95594ba0bbde3f4bfff&rtoken=W00Rd4cUQOJa&force_default=yes&ycrid=na-f88b3a54c4ee189416e415658854a8d1-downloader11e&ts=5ed8609995e80&s=7d948518516644c57fdf289d64665c1441f2a48771667e8c002fa598023e3131&pb=U2FsdGVkX1-HuV0PkFPzu9-vL19bzhW78NAZmCyIDN2OqbxiyES3YqEZpNdujuS7sR1d3uzr2l-vkCc-8EJaGVYDYzpxhppxS8ZOWz0PaRQ "Board")
+![Screenshot from 2022-11-15 17-25-54](https://user-images.githubusercontent.com/104615049/201948931-0240d211-cfd0-4f19-8491-2e912bd4b1f2.png)
   
 Players’ pieces are set up in the two horizontal rows (known as ranks) closest to each player. The second rank - ie. the second row from the player’s perspective - consists of a line of eight pawns, each placed on a single square.
   
